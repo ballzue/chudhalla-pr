@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: chudhalla-pr
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: chudhalla-db
+          property: connectionString
+
+databases:
+  - name: chudhalla-db
+    plan: free
+    databaseName: chudhalla
+    user: chudhalla_admin
